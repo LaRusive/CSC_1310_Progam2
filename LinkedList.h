@@ -2,7 +2,7 @@
     Author: Weston LaRue
 	Date: Oct 22, 2024
 	Title: LinkedList.h
-	Purpose: Define Linked list class and function prototypes
+	Purpose: Define Linked list class and function
 */
 #ifndef LinkedList_H
 #define LinkedList_H
