@@ -38,11 +38,12 @@ class LinkedList
    		// Linked list operations
 		bool isEmpty();
 		int getLength();
-		//double getNodeValue(int);
+		double getNodeValue(int);
 		void appendNode(T);
-		//void insertNode(int, T);
 		void deleteNode(T);
 		void displayList() const;
+		void bubbleSort();
+		void swap(int, int);
 };
 
 //isEmpty function
@@ -74,6 +75,29 @@ int LinkedList<T>::getLength()
 		nodePtr = nodePtr->next;
 	}
 	return counter;
+}
+
+template <typename T>
+double LinkedList<T>::getNodeValue(int position)
+{
+	ListNode *nodePtr;
+	if(!head)
+		return -1;
+	else
+	{
+		if(position == 0)
+			return head->value;
+		nodePtr = head;
+		int currentPos = 0;
+		while(position >= currentPos && nodePtr != NULL)
+		{
+			if(position == currentPos)
+				return nodePtr->value;
+			currentPos++;
+			nodePtr = nodePtr->next;
+		}
+	}
+	return -1;
 }
 
 //appendNode function
@@ -181,6 +205,54 @@ void LinkedList<T>::displayList() const
 		cout << "\nThere are no nodes in the list.\n\n";
 }
 
+template <typename T>
+void LinkedList<T>::bubbleSort()
+{
+	for(int last = getLength()-1; last > 0; last--)
+	{
+		for(int i=0; i<last; i++)
+		{
+			//compare adjacent nodes
+			if(getNodeValue(i) > getNodeValue(i+1))
+			{
+				//swap the values in the two nodes
+				swap(i+1, i);
+			}
+		}
+	}
+}
+
+template <typename T>
+void LinkedList<T>::swap(int pos1, int pos2)
+{
+	ListNode *nodePtr1=NULL;
+	ListNode *nodePtr2=NULL;
+	double tempValue;
+	
+	nodePtr1 = head;
+	
+	int curPos = 0;
+	while(nodePtr1 != NULL && pos1 != curPos)
+	{
+		//traverse to next node
+		nodePtr1 = nodePtr1->next;
+		curPos++;
+	}
+	//now nodePtr1 is pointing to pos1 
+	nodePtr2 = head;
+	curPos = 0;
+	while(nodePtr2 != NULL && pos2 != curPos)
+	{
+		//traverse to next node
+		nodePtr2 = nodePtr2->next;
+		curPos++;
+	}	
+	//now nodePtr2 is pointing to pos2 	
+
+	tempValue = nodePtr1->value;
+	nodePtr1->value = nodePtr2->value;
+	nodePtr2->value = tempValue;
+}
 
 template <typename T>
 LinkedList<T>::~LinkedList()
