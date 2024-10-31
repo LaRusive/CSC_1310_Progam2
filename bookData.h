@@ -29,10 +29,10 @@ class Book{
         operator >
         operator ==
         */
-        std::string operator<<(const& Book);
-        bool operator<(const& Book);
-        bool operator>(const& Book);
-        bool operator==(const& Book);
+        friend std::ostream& operator<<(std::ostream& out, Book const& c);
+        bool operator<(Book&);
+        bool operator>(Book&);
+        bool operator==(Book&);
 };
 
 #endif

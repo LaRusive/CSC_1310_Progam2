@@ -5,6 +5,7 @@
 */
 
 #include "bookData.h"
+//#include <iostream>
 
 Book::Book(std::string t, std::string a, int y){
     title = t;
@@ -36,16 +37,19 @@ void Book::setYear(int x){
     year = x;
 }
 
-std::string operator<<(const& Book b){
-    //how to overload stream? 
-    return "string";
+//friend of Book
+std::ostream& operator<<(std::ostream& out, Book const& c)
+{
+    out << c.title << " by " << c.author << " (" << c.year << ")";
+    return out;
 }
-bool operator<(const& Book b){
-    //
+
+bool Book::operator<(Book& b){
+    return (b.getAuthor() < author);
 }
-bool operator>(const& Book b){
-    //
+bool Book::operator>(Book& b){
+    return (b.getAuthor() > author);
 }
-bool operator==(const& Book b){
-    //
+bool Book::operator==(Book& b){
+    return (b.getAuthor() == author);
 }
