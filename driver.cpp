@@ -1,3 +1,9 @@
+/*
+    J Seger
+    Driver for Library program
+    11/1
+*/
+
 #include "bookData.h"
 #include "linkedList.h"
 #include <iostream>
@@ -74,13 +80,15 @@ int main()
         switch(choice){
             case 1: addBook(list); break;
             case 2: removeNode(list); break;
-            case 3: list.insertionSort(); break;
-            case 4: list.insertionSort(); break;
+            case 3: list.insertionSort(false); break;
+            case 4: list.insertionSort(true); break;
             case 5: exitBool = true; break;
             default: break; // no action
         }
 
     }while(!exitBool);
+
+    std::cout << "\n\nGood bye!";
 
     return 0;
 }

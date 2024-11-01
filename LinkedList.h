@@ -47,7 +47,7 @@ class LinkedList
 
 		ListNode* getNodePtr(int);
 
-		void insertionSort(bool whichWay);
+		void insertionSort(bool reverse);
 		void insertNode(int position, T num);
 
 };
@@ -230,7 +230,7 @@ void LinkedList<T>::bubbleSort()
 }
 
 template <typename T>
-void LinkedList<T>::insertionSort(bool whichWay)
+void LinkedList<T>::insertionSort(bool reverse)
 {
 	T key;
 	int j;
@@ -238,9 +238,16 @@ void LinkedList<T>::insertionSort(bool whichWay)
 	{
 		key = getNodeValue(i);
 		j = i-1;
-		while(j >= 0 && getNodeValue(j) > key)
-		{			
-			j = j-1;
+		if(!reverse){
+			while(j >= 0 && getNodeValue(j) > key)
+			{			
+				j = j-1;
+			}
+		}else{
+			while(j >= 0 && getNodeValue(j) < key) //swaps the comparison to sort Z - A
+			{			
+				j = j-1;
+			}
 		}
 		//remove key where it is and then insert in correct position
 		deleteNode(key);
