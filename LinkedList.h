@@ -47,8 +47,7 @@ class LinkedList
 
 		ListNode* getNodePtr(int);
 
-		int search(double num);
-		void insertionSort();
+		void insertionSort(bool whichWay);
 		void insertNode(int position, T num);
 
 };
@@ -230,35 +229,8 @@ void LinkedList<T>::bubbleSort()
 	}
 }
 
-//searches for a value (num) and returns the position or -1 if can't be found
 template <typename T>
-int LinkedList<T>::search(double num)
-{
-	ListNode *nodePtr;  // To move through the list
-	int position;
-
-	// Position nodePtr at the head of the list.
-	nodePtr = head;
-	position = 0;
-
-	// While nodePtr points to a node, traverse the list.
-	while (nodePtr)
-	{
-		//see if this node matches the value
-		if(nodePtr->value == num)
-			return position;
-		
-		//increment position
-		position++;
-
-		// Move to the next node.
-		nodePtr = nodePtr->next;
-	}
-	return -1; //node couldn't be found
-}
-
-template <typename T>
-void LinkedList<T>::insertionSort()
+void LinkedList<T>::insertionSort(bool whichWay)
 {
 	T key;
 	int j;
@@ -373,7 +345,7 @@ LinkedList<T>::~LinkedList()
 	{
 		// Save a pointer to the next node.
 		nextNode = nodePtr->next;
-		cout << "\ndestructor:  deleting node with value " << nodePtr->value;
+		//cout << "\ndestructor:  deleting node with value " << nodePtr->value;
 
 		// Delete the current node.
 		delete nodePtr;

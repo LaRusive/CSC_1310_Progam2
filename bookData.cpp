@@ -51,10 +51,10 @@ std::ostream& operator<<(std::ostream& out, Book const& c)
 }
 
 bool Book::operator<(Book& b){
-    return (b.lastWord(b.getAuthor()) < b.lastWord(author));
+    return (b.lastWord(b.getAuthor()) > b.lastWord(author)); //swapping signs to make it sort A - Z
 }
 bool Book::operator>(Book& b){
-    return (b.lastWord(b.getAuthor()) > b.lastWord(author));
+    return (b.lastWord(b.getAuthor()) < b.lastWord(author));
 }
 bool Book::operator==(Book& b){
     return (b.lastWord(b.getAuthor()) == b.lastWord(author));
