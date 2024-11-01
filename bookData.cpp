@@ -51,11 +51,19 @@ std::ostream& operator<<(std::ostream& out, Book const& c)
 }
 
 bool Book::operator<(Book& b){
-    return (b.getAuthor() < author);
+    return (b.lastWord(b.getAuthor()) < b.lastWord(author));
 }
 bool Book::operator>(Book& b){
-    return (b.getAuthor() > author);
+    return (b.lastWord(b.getAuthor()) > b.lastWord(author));
 }
 bool Book::operator==(Book& b){
-    return (b.getAuthor() == author);
+    return (b.lastWord(b.getAuthor()) == b.lastWord(author));
+}
+
+//If Author has firstname, sort by lastname
+//If not, sort by whatever name is in list
+std::string Book::lastWord(std::string x){
+    if (x.find(' ') != std::string::npos){
+        return x.substr(x.find(' ') + 1);
+    }return x;
 }

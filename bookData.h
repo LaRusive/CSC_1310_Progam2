@@ -30,6 +30,7 @@ class Book{
         operator >
         operator ==
         */
+        std::string lastWord(std::string);
         friend std::ostream& operator<<(std::ostream& out, Book const& c);
         bool operator<(Book&);
         bool operator>(Book&);
