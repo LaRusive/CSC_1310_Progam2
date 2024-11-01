@@ -7,6 +7,12 @@
 #include "bookData.h"
 //#include <iostream>
 
+Book::Book(){
+    title = "Title";
+    author = "Author";
+    year = 1900;
+}
+
 Book::Book(std::string t, std::string a, int y){
     title = t;
     author = a;

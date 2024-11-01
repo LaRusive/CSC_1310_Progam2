@@ -16,6 +16,7 @@ class Book{
         std::string author;
         int year;
     public:
+        Book();
         Book(std::string, std::string, int);
         std::string getTitle();
         std::string getAuthor();
