@@ -7,22 +7,19 @@
 #ifndef LinkedList_H
 #define LinkedList_H
 #include <iostream>
+#include "ListNode.h"
 using namespace std;
 
 //template definition and class definition
 template <class T>
 class LinkedList
 {
+
+	template<class U> friend class ListNode; //declare ListNode as friend class
     //private definition
     private:
-        struct ListNode
-        {
-            T value;
-            ListNode *next;
-        };
-   
-    ListNode* head;
-	ListNode* tail;
+    ListNode<T>* head;
+	ListNode<T>* tail;
 
     //public definition
     public:
@@ -45,10 +42,35 @@ class LinkedList
 		void bubbleSort();
 		void swap(int, int);
 
-		ListNode* getNodePtr(int);
-
 		void insertionSort(bool reverse);
 		void insertNode(int position, T num);
+
+		//weird syntax but it works
+		friend std::ostream& operator<<(std::ostream& out, const LinkedList & c){
+			//adapted from displayList
+			
+			ListNode<T> *nodePtr;  // To move through the list
+
+			if(c.head != NULL)
+			{
+				// Position nodePtr at the head of the list.
+				nodePtr = c.head;
+				// While nodePtr points to a node, traverse the list.
+				int counter = 1;
+				while(nodePtr)
+				{
+					// Display the value in this node.
+					out << counter << ". " << nodePtr->value << endl;
+
+					// Move to the next node.
+					nodePtr = nodePtr->next;
+					counter++;
+				}
+			}
+			else
+				out << "\nThe List is empty.\n\n";
+			return out;
+		}
 
 };
 
@@ -58,7 +80,7 @@ bool LinkedList<T>::isEmpty()
 {
 	bool status;
 
-	ListNode* temp;
+	ListNode<T>* temp;
 
 	if(temp->next == NULL)
 		return true;
@@ -71,7 +93,7 @@ template <typename T>
 int LinkedList<T>::getLength()
 {
 	int counter = 0;
-	ListNode *nodePtr;
+	ListNode<T> *nodePtr;
 	
 	nodePtr = head;
 	
@@ -86,7 +108,7 @@ int LinkedList<T>::getLength()
 template <typename T>
 T LinkedList<T>::getNodeValue(int position)
 {
-	ListNode *nodePtr;
+	ListNode<T> *nodePtr;
 	if(!head)
 		return T{};
 	else
@@ -110,11 +132,11 @@ T LinkedList<T>::getNodeValue(int position)
 template <typename T>
 void LinkedList<T>::appendNode(T val)
 {
-	ListNode *newNode;  // To point to a new node
-	ListNode *nodePtr;
+	ListNode<T> *newNode;  // To point to a new node
+	ListNode<T> *nodePtr;
 
 	// Allocate a new node and store num there.
-	newNode = new ListNode{val, NULL};
+	newNode = new ListNode<T>{val, NULL};
 	newNode->value = val;
 	newNode->next = NULL;
 	//cout << "\nappendNode:  dynamically created new node & set value";
@@ -148,8 +170,8 @@ template <typename T>
 void LinkedList<T>::deleteNode(T val)
 {
 	//define list pointers
-	ListNode *nodePtr;
-	ListNode *PrvNode;
+	ListNode<T> *nodePtr;
+	ListNode<T> *PrvNode;
 
 	// If the list is empty, do nothing.
 	if (!head)
@@ -191,7 +213,7 @@ void LinkedList<T>::deleteNode(T val)
 template <typename T>
 void LinkedList<T>::displayList() const
 {
-	ListNode *nodePtr;  // To move through the list
+	ListNode<T> *nodePtr;  // To move through the list
 
 	if(head != NULL)
 	{
@@ -258,8 +280,8 @@ void LinkedList<T>::insertionSort(bool reverse)
 template <typename T>
 void LinkedList<T>::swap(int pos1, int pos2)
 {
-	ListNode *nodePtr1=NULL;
-	ListNode *nodePtr2=NULL;
+	ListNode<T> *nodePtr1=NULL;
+	ListNode<T> *nodePtr2=NULL;
 	T* tempValue;
 	
 	nodePtr1 = head;
@@ -291,10 +313,10 @@ void LinkedList<T>::swap(int pos1, int pos2)
 template <typename T>
 void LinkedList<T>::insertNode(int position, T num)
 {
-	ListNode *nodePtr;
-	ListNode *newNode;
+	ListNode<T> *nodePtr;
+	ListNode<T> *newNode;
 	
-	newNode = new ListNode;
+	newNode = new ListNode<T>;
 	newNode->value = num;
 	
 	if(!head)
@@ -337,12 +359,11 @@ void LinkedList<T>::insertNode(int position, T num)
 	}	
 }
 
-
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-	ListNode *nodePtr;   // To traverse the list
-	ListNode *nextNode;  // To point to the next node
+	ListNode<T> *nodePtr;   // To traverse the list
+	ListNode<T> *nextNode;  // To point to the next node
 
 	// Position nodePtr at the head of the list.
 	nodePtr = head;
@@ -362,7 +383,7 @@ LinkedList<T>::~LinkedList()
 	}
 }
 
-template <typename T>
+/*template <typename T>
 typename LinkedList<T>::ListNode* LinkedList<T>::getNodePtr(int x){
 	ListNode* nodePtr;
 	
@@ -383,6 +404,32 @@ typename LinkedList<T>::ListNode* LinkedList<T>::getNodePtr(int x){
 		}
 	}
 	return nullptr;
-}
+}*/
+
+//template <typename T>
+//comment comment
+/*std::ostream& operator<<(std::ostream& out, LinkedList<Book> const& c){
+	//adapted from displayList
+	
+	ListNode<T> *nodePtr;  // To move through the list
+
+	if(LinkedList<T>::head != NULL)
+	{
+		// Position nodePtr at the head of the list.
+		nodePtr = LinkedList<T>::head;
+		// While nodePtr points to a node, traverse the list.
+		while(nodePtr)
+		{
+			// Display the value in this node.
+			out << nodePtr->value << endl;
+
+			// Move to the next node.
+			nodePtr = nodePtr->next;
+		}
+	}
+	else
+		out << "\nThe List is empty.\n\n";
+	return out;
+}*/
 
 #endif

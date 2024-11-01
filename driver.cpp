@@ -16,23 +16,10 @@ int main()
 {
     /*
     To do:
-        In LinkedList, add Friend  << overload (use displayList())
-
-        Give LinkedList a cpp?
-
-        If time allows, would be cool to also add sorts for different attributes -- right now it defaults to
-            sort by author, maybe add a sort by year?
-
-        Implement either class list node or smart pointer. List node should be easy to just remove the list node struct from LinkedList and 
-            make it its own thing so I'd reccomend that
         
         Figure out MakeFile -- shouldn't be too hard
 
         Write test case
-
-        Fill out bookData.txt
-
-        File import/export -- figure out if this is required. If not, probably don't do it
     */
 
     LinkedList<Book> list;
@@ -51,8 +38,7 @@ int main()
 
     do{
 
-        std::cout << "\n\n";
-        list.displayList();
+        std::cout << "\n\n" << list;
 
         std::cout << "\n\nWelcome to your Library!";
         std::cout << "\nMenu:";
@@ -125,5 +111,5 @@ void removeNode(LinkedList<Book>& list){
     int ind;
     std::cout << "\n\tWhat is the index of the book you would like to remove? ";
     cin >> ind;
-    list.deleteNode(list.getNodeValue(ind));//Easier than writing a delete function that takes an index
+    list.deleteNode(list.getNodeValue(ind-1));//Easier than writing a delete function that takes an index
 }
