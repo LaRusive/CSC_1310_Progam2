@@ -20,8 +20,7 @@ int main()
 
         Give LinkedList a cpp?
 
-        Add at least one more sort to go the opposite way. 
-            If time allows, would be cool to also add sorts for different attributes -- right now it defaults to
+        If time allows, would be cool to also add sorts for different attributes -- right now it defaults to
             sort by author, maybe add a sort by year?
 
         Implement either class list node or smart pointer. List node should be easy to just remove the list node struct from LinkedList and 
@@ -33,18 +32,7 @@ int main()
 
         Fill out bookData.txt
 
-        Put together Driver
-            Program flow -- menus and such
-            File import/export -- figure out if this is required. If not, probably don't do it
-
-        Driver menu:
-            "Welcome to Library"  
-            - Add book
-            - Remove book
-            - Sort library by author, A-Z
-            - Sort library by author, Z-A
-            - (If implemented) Sort by year, etc
-            - Exit
+        File import/export -- figure out if this is required. If not, probably don't do it
     */
 
     LinkedList<Book> list;
