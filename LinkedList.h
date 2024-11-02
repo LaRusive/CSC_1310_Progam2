@@ -1,14 +1,17 @@
 /*
-    Author: Weston LaRue
+    Author: Weston LaRue, J Seger
 	Date: Oct 22, 2024
 	Title: LinkedList.h
 	Purpose: Define Linked list class and function
 */
+
 #ifndef LinkedList_H
 #define LinkedList_H
 #include <iostream>
 #include "ListNode.h"
 using namespace std;
+
+//In hindsight, we should have made a cpp to implement this stuff
 
 //template definition and class definition
 template <class T>
@@ -45,7 +48,7 @@ class LinkedList
 		void insertionSort(bool reverse);
 		void insertNode(int position, T num);
 
-		//weird syntax but it works
+		//Weird syntax but this is what made it compile
 		friend std::ostream& operator<<(std::ostream& out, const LinkedList & c){
 			//adapted from displayList
 			
@@ -382,54 +385,5 @@ LinkedList<T>::~LinkedList()
 		nodePtr = nextNode;
 	}
 }
-
-/*template <typename T>
-typename LinkedList<T>::ListNode* LinkedList<T>::getNodePtr(int x){
-	ListNode* nodePtr;
-	
-	if(!head)
-		return nullptr;
-	else
-	{
-		if(x == 0)
-			return head;
-		nodePtr = head;
-		int currentPos = 0;
-		while(x >= currentPos && nodePtr != NULL)
-		{
-			if(x == currentPos)
-				return nodePtr;
-			currentPos++;
-			nodePtr = nodePtr->next;
-		}
-	}
-	return nullptr;
-}*/
-
-//template <typename T>
-//comment comment
-/*std::ostream& operator<<(std::ostream& out, LinkedList<Book> const& c){
-	//adapted from displayList
-	
-	ListNode<T> *nodePtr;  // To move through the list
-
-	if(LinkedList<T>::head != NULL)
-	{
-		// Position nodePtr at the head of the list.
-		nodePtr = LinkedList<T>::head;
-		// While nodePtr points to a node, traverse the list.
-		while(nodePtr)
-		{
-			// Display the value in this node.
-			out << nodePtr->value << endl;
-
-			// Move to the next node.
-			nodePtr = nodePtr->next;
-		}
-	}
-	else
-		out << "\nThe List is empty.\n\n";
-	return out;
-}*/
 
 #endif

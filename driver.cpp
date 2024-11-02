@@ -14,47 +14,37 @@ void removeNode(LinkedList<Book>&);
 
 int main()
 {
-    /*
-    To do:
-        
-        Figure out MakeFile -- shouldn't be too hard
-
-        Write test case
-    */
 
     LinkedList<Book> list;
 
-    /*list.appendNode(Book("Moby Dick", "Herman Melville", 1870));
-    list.appendNode(Book("King Lear", "William Shakespeare", 1610));
-    list.appendNode(Book("Magnets", "Francis Bitter", 1959));
-    
-    std::cout << "\n";
-
-    list.displayList();
-
-    list.insertionSort();*/
+    //Example books -- 
+    /*list.appendNode(Book("Moby Dick", "Herman Melville", 1851));
+    list.appendNode(Book("King Lear", "William Shakespeare", 1608));
+    list.appendNode(Book("Magnets", "Francis Bitter", 1959));*/
 
     bool exitBool = false;
 
     do{
-
+        
+        //Menu stuff
         std::cout << "\n\n" << list;
 
         std::cout << "\n\nWelcome to your Library!";
         std::cout << "\nMenu:";
         std::cout << "\n\t1. Add book";
         std::cout << "\n\t2. Remove book";
-        std::cout << "\n\t3. Sort books A - Z"; //implement
+        std::cout << "\n\t3. Sort books A - Z";
         std::cout << "\n\t4. Sort book Z - A";
         std::cout << "\n\t5. Exit Library";
 
         int choice = -1;
         inpVer(choice, 1, 5);
 
+        //Actions to take
         switch(choice){
             case 1: addBook(list); break;
             case 2: removeNode(list); break;
-            case 3: list.insertionSort(false); break;
+            case 3: list.insertionSort(false); break; //Would have been cool to implement a sort-by-year option
             case 4: list.insertionSort(true); break;
             case 5: exitBool = true; break;
             default: break; // no action
@@ -91,6 +81,7 @@ void inpVer(int& out, int lowerBound, int upperBound, string qText, string invTe
     }while(!works);
 }
 
+//Takes user input to create a new book node
 void addBook(LinkedList<Book>& list){
     string title, author;
     int year;
@@ -107,9 +98,10 @@ void addBook(LinkedList<Book>& list){
     list.appendNode(Book(title, author, year));
 }
 
+//Takes user input to remove a node
 void removeNode(LinkedList<Book>& list){
     int ind;
     std::cout << "\n\tWhat is the index of the book you would like to remove? ";
     cin >> ind;
-    list.deleteNode(list.getNodeValue(ind-1));//Easier than writing a delete function that takes an index
+    list.deleteNode(list.getNodeValue(ind-1));//Inefficient but easier than writing another delete function
 }

@@ -12,25 +12,29 @@
 
 class Book{
     private:
+        //attributes
         std::string title;
         std::string author;
         int year;
     public:
+        //constructors
         Book();
         Book(std::string, std::string, int);
+
+        //Getters
         std::string getTitle();
         std::string getAuthor();
         int getYear();
+
+        //Setters
         void setTitle(std::string);
         void setAuthor(std::string);
         void setYear(int);
-        /*
-        operator <<
-        operator <
-        operator >
-        operator ==
-        */
+
+        //Used for comparisons by author name
         std::string lastWord(std::string);
+
+        //Operator overloads
         friend std::ostream& operator<<(std::ostream& out, Book const& c);
         bool operator<(Book&);
         bool operator>(Book&);

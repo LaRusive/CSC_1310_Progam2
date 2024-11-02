@@ -5,7 +5,6 @@
 */
 
 #include "bookData.h"
-//#include <iostream>
 
 Book::Book(){
     title = "Title";
@@ -65,5 +64,6 @@ bool Book::operator==(Book& b){
 std::string Book::lastWord(std::string x){
     if (x.find(' ') != std::string::npos){
         return x.substr(x.find(' ') + 1);
-    }return x;
+    }
+    return x;
 }
